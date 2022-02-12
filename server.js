@@ -7,9 +7,10 @@ const style = fs.readFileSync('templates/styles.css', 'utf-8');
 const data = fs.readFileSync('data.json', 'utf-8');
 const dataObj = JSON.parse(data);
 let output = template.replace('{{style}}', style);
-output = template.replace('{{data}}', dataObj.name);
+output = output.replace('{{data}}', dataObj.name);
 
 const server = http.createServer((request, response) => {
+	console.log('Hello world');
 	const query = url.parse(request.url, true).query.data;
 	if (query) {
 		// output = output.replace('{{data}}', query);
@@ -22,4 +23,4 @@ const server = http.createServer((request, response) => {
 	}
 });
 
-server.listen('8000', '127.0.0.1');
+server.listen('8000', '192.168.1.9');
